@@ -1,59 +1,9 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<title>Display Webcam Stream</title>
- 
-<style>
-#container {
-	margin: 0px auto;
-	width: 500px;
-	height: 375px;
-	border: 10px #333 solid;
-}
-#videoElement {
-	width: 500px;
-	height: 375px;
-	background-color: #666;
-}
-</style>
-</head>
- 
-<body>
-<div id="container">
-	<video autoplay="true" id="videoElement">
-	
-	</video>
-</div>
-<script>
-let click_button = document.querySelector("#click-photo");
-let canvas = document.querySelector("#canvas");
-var video = document.querySelector("#videoElement");
-if (navigator.mediaDevices.getUserMedia) {
-navigator.mediaDevices.getUserMedia({
-video: true
-})
-.then(function(stream) {
-video.srcObject = stream;
-})
-.catch(function(err0r) {
-console.log("Something went wrong!")
-});
-click_button.addEventListener('click', function() {
-canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-var dataURL = canvas.toDataURL("");
-fetch('', {
-headers: {
-'Accept': 'application/json',
-'Content-Type': 'application/json'
-},
-body:JSON.stringify({'image' : dataURL}),
-method:"POST"
-})
-.then(response => {response.json()})
-.then(data => console.log(data));
-});
-}
-</script>
-</body>
+    <head>
+        <title>Hello World</title>
+    </head>
+    <body>
+        <p>This is an example of a simple HTML page with one paragraph.</p>
+    </body>
 </html>
